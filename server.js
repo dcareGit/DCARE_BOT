@@ -41,7 +41,7 @@ ref.on("child_added", function(snapshot, prevChildKey) {
 ////////////////////////////////////////////
 
 app.get('/', function (req, res) {
-  res.send('GET request to the homepage aaaaaa');
+  res.send('GET request to the homepage aaaaQQQaa');
 });
 
 // POST method route
