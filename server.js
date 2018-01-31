@@ -1,3 +1,8 @@
+/**
+ * NSC Project 2018
+ * Depression Detection Chatbot
+ * by Student's KMUTT
+
 //start
 var express = require("express");
 var app = express();
