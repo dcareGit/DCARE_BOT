@@ -1,0 +1,21 @@
+{
+  "name": "dcarex",
+  "version": "1.0.0",
+  "description": "test node js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    ""
+  ],
+  "author": "HELLO",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "firebase": "^4.9.0",
+    "firebase-admin": "^5.8.1"
+  },
+  "devDependencies": {}
+}
