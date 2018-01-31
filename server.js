@@ -2,8 +2,9 @@
  * NSC Project 2018
  * Depression Detection Chatbot
  * by Student's KMUTT
+ */
 
-//start
+//start to connect network
 var express = require("express");
 var app = express();
 
@@ -12,12 +13,7 @@ var port = process.env.PORT || 3000;
 app.listen(port);
 console.log("Server start on port : " + port);
 
-//date 
-//var dateFormat = require('dateformat');
-// var d = Date.now();
-// var dateNow = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
-//     d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
-//firebase connectnpm install dateformat
+//connect firebase
 var admin = require("firebase-admin");
 var serviceAccount = require("./etc/serviceAccountKey.json");
 
@@ -30,13 +26,6 @@ var database = admin.database();
 
 var ref = database.ref("message/");
 
-// Attach an asynchronous callback to read the data at our posts reference
-// ref.on("value", function(snapshot) {
-//   console.log("-- " + snapshot.val());
-// }, function (errorObject) {
-//   console.log("The read failed: " + errorObject.code);
-// });
-
 ref.on("child_added", function(snapshot, prevChildKey) {
   var newPost = snapshot.val();
   console.log("UserId: " + newPost.userId);
@@ -45,16 +34,9 @@ ref.on("child_added", function(snapshot, prevChildKey) {
 });
 ////////////////////////////////////////////
 
-app.get('/aa', function (req, res) {
-  var testV = req.param('att');
-
-  res.json({
-    "messages": [
-    {
-      "text" : "hello " + testV
-    }]
-  });
-  res.send('GET request to the homepage aaaaQQQaa');
+//GET method route
+app.get('/', function (req, res) {
+  res.send('GET request to the homepage');
 });
 
 // POST method route
@@ -63,15 +45,6 @@ app.post('/', function (req, res) {
 });
 
 //>>>get first message from chatfuel to firebase
-app.get('/newMsg', function(req, res) {
-
-    res.send("Hello");
-    //res.send(item + "Hello aaa")
-});
-//
-// name gender 
-// dateBegin dateLatest status
-// Address age 
 
 app.get('/api/user', function(req,res){
   //get data
@@ -140,3 +113,34 @@ app.get('/api/feedback', function(req,res){
 
 //>>> show result by get 
 
+
+
+
+// ///ref.on("child_added", function(snapshot, prevChildKey) {
+//   var newPost = snapshot.val();
+//   console.log("UserId: " + newPost.userId);
+//   console.log("Message: " + newPost.message);
+//   //console.log("Previous Post ID: " + prevChildKey);
+// });
+
+
+// app.get('/aa', function (req, res) {
+//   var testV = req.param('att');
+
+//   res.json({
+//     "messages": [
+//     {
+//       "text" : "hello " + testV
+//     }]
+//   });
+//   res.send('GET request to the homepage aaaaQQQaa');
+// });
+// app.get('/newMsg', function(req, res) {
+
+//   res.send("Hello");
+//   //res.send(item + "Hello aaa")
+// });
+// //
+// // name gender 
+// // dateBegin dateLatest status
+// // Address age 
