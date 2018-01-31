@@ -40,7 +40,15 @@ ref.on("child_added", function(snapshot, prevChildKey) {
 });
 ////////////////////////////////////////////
 
-app.get('/', function (req, res) {
+app.get('/aa', function (req, res) {
+  var testV = req.param('att');
+
+  res.json({
+    "set_attributes":
+    {
+      "result" : "hello " + testV
+    }
+  });
   res.send('GET request to the homepage aaaaQQQaa');
 });
 
