@@ -44,10 +44,10 @@ app.get('/aa', function (req, res) {
   var testV = req.param('att');
 
   res.json({
-    "set_attributes":
+    "messages": [
     {
-      "result" : "hello " + testV
-    }
+      "text" : "hello " + testV
+    }]
   });
   res.send('GET request to the homepage aaaaQQQaa');
 });
