@@ -44,31 +44,26 @@ app.post('/', function (req, res) {
   res.send('POST request to the homepage');
 });
 
-//>>>get first message from chatfuel to firebase
-
+//>>>get user data from chatfuel to firebase
 app.get('/api/user', function(req,res){
   //get data
   var user_fb_id = req.param('userIn');
   var name = req.param('nameIn');
   var gender = req.param('genderIn');
-  //var address = req.param('addressIn');
+
   //var age = req.param('user')
   //write data
   database.ref('user/'+user_fb_id).set({
     userId: user_fb_id,
     name : name ,
     gender: gender
-    //address : address,
     //age : age
   });
   //send test
-  res.send("Add new user data" + user_fb_id );
+  res.send("Add new user data ID:(" + user_fb_id +") completely.");
 });
 
-//user message - PUSH
-//fb_id user1stInput date
-// + send to model to predict + save
-// + send predict_emo to chatfuel
+//get Message to user
 app.get('/api/message', function(req,res){
   //get data
   var user_fb_id = req.param('userIn');
@@ -82,14 +77,8 @@ app.get('/api/message', function(req,res){
     //age : age
   });
   //send test
-  res.send("Add new message");
+  res.send("MESSEGE : get data from ID: " + user_fb_id);
 });
-
-//user message - UPDATE
-//fb_id real_emo causeInput
-//>>>pridect emotion and sent back to chatfuel
-
-//>>>save cause and emotion from user
 
 //>>>save user feed back
 // /feedback
@@ -106,14 +95,18 @@ app.get('/api/feedback', function(req,res){
     message: msg
   });
   //send test
-  res.send(user_fb_id + " >> " + msg);
+  res.send("FEEDBACK : get data from ID: " + user_fb_id + " >> " + msg);
 });
 
-//>>>calculate point of user and notification when is have signal
+//WORK UN FIN
+//user message - UPDATE
+//+ facebook ID
+//+ select emotion
+//+ cause emotion
 
-//>>> show result by get 
 
-
+//>>>pridect emotion and sent back to chatfuel
+//>>>save cause and emotion from user
 
 
 // ///ref.on("child_added", function(snapshot, prevChildKey) {
@@ -122,25 +115,3 @@ app.get('/api/feedback', function(req,res){
 //   console.log("Message: " + newPost.message);
 //   //console.log("Previous Post ID: " + prevChildKey);
 // });
-
-
-// app.get('/aa', function (req, res) {
-//   var testV = req.param('att');
-
-//   res.json({
-//     "messages": [
-//     {
-//       "text" : "hello " + testV
-//     }]
-//   });
-//   res.send('GET request to the homepage aaaaQQQaa');
-// });
-// app.get('/newMsg', function(req, res) {
-
-//   res.send("Hello");
-//   //res.send(item + "Hello aaa")
-// });
-// //
-// // name gender 
-// // dateBegin dateLatest status
-// // Address age 
