@@ -16,23 +16,14 @@ console.log("Server start on port : " + port);
 //connect firebase
 var admin = require("firebase-admin");
 var serviceAccount = require("./etc/serviceAccountKey.json");
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://dcarebotx-192914.firebaseio.com"
 });
-
 var database = admin.database();
-
 var ref = database.ref("message/");
 
-ref.on("child_added", function(snapshot, prevChildKey) {
-  var newPost = snapshot.val();
-  console.log("UserId: " + newPost.userId);
-  console.log("Message: " + newPost.message);
-  //console.log("Previous Post ID: " + prevChildKey);
-});
-////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 //GET method route
 app.get('/', function (req, res) {
@@ -44,7 +35,7 @@ app.post('/', function (req, res) {
   res.send('POST request to the homepage');
 });
 
-//>>>get user data from chatfuel to firebase
+//GET user data from chatfuel to firebase
 app.get('/api/user', function(req,res){
   //get data
   var user_fb_id = req.param('userIn');
@@ -63,7 +54,7 @@ app.get('/api/user', function(req,res){
   res.send("Add new user data ID:(" + user_fb_id +") completely.");
 });
 
-//get Message to user
+//GET Message to user
 app.get('/api/message', function(req,res){
   //get data
   var user_fb_id = req.param('userIn');
@@ -80,7 +71,7 @@ app.get('/api/message', function(req,res){
   res.send("MESSEGE : get data from ID: " + user_fb_id);
 });
 
-//>>>save user feed back
+//>>>SAVE user feed back
 // /feedback
 // +userId
 // +date
@@ -107,11 +98,3 @@ app.get('/api/feedback', function(req,res){
 
 //>>>pridect emotion and sent back to chatfuel
 //>>>save cause and emotion from user
-
-
-// ///ref.on("child_added", function(snapshot, prevChildKey) {
-//   var newPost = snapshot.val();
-//   console.log("UserId: " + newPost.userId);
-//   console.log("Message: " + newPost.message);
-//   //console.log("Previous Post ID: " + prevChildKey);
-// });
